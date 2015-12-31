@@ -1,0 +1,3 @@
+datasource : "data/izy.xlsx"
+ios : {"root" : "../izy-ios","path" : "izy/UserInterface"}
+android : {"root" : "../izy-android"}
