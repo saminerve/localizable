@@ -8,6 +8,4 @@ def open_localizable(path):
 	book = xlrd.open_workbook(path)
 	first_sheet = book.sheet_by_index(0)
 
-	print first_sheet.row_values(0)
-
 	return first_sheet
