@@ -15,12 +15,13 @@ def init(engine):
 		ios.init(platformsArgs["ios"])
 
 def write(row, storyboard):
-	if row.getRowType() == RowType.text:
-		writeText(row, storyboard)
-	elif row.getRowType() == RowType.comment:
-		writeComment(row, storyboard)
-	elif row.getRowType() == RowType.storyboard:
-		writeStoryboard(row, storyboard)
+	if len(row.key) > 0:
+		if row.getRowType() == RowType.text:
+			writeText(row, storyboard)
+		elif row.getRowType() == RowType.comment:
+			writeComment(row, storyboard)
+		elif row.getRowType() == RowType.storyboard:
+			writeStoryboard(row, storyboard)
 
 def writeComment(row, storyboard):
 	if "android" in platformsArgs:

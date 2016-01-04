@@ -9,10 +9,11 @@ class LocalizableRow:
 	"""Row of localizable file"""
 	def __init__(self, sheet_row):
 		self.key = sheet_row[0]
-		self.page = sheet_row[1]
-		self.section = sheet_row[2]
-		self.label = sheet_row[3]
-		self.text = sheet_row[4]
+		self.dynamic = sheet_row[1] == "*"
+		self.page = sheet_row[2]
+		self.section = sheet_row[3]
+		self.label = sheet_row[4]
+		self.text = sheet_row[5]
 
 	def getRowType(self):
 		if self.key != "#":
