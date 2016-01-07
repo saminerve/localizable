@@ -29,7 +29,7 @@ def writeText(row, storyboard):
 
 	if storyboard != None and storyboard.lower() in resourceContent:
 		(path, content) = resourceContent[storyboard.lower()]
-		text = row.text.replace('"', '\\"')
+		text = row.text.replace('"', '\\"').replace('<br/>', '\\n')
 		if storyboard.lower() == commonStoryboard.lower():
 			resourceContent[storyboard.lower()] = (path, content + "\""+row.key + "\" = \"" + text + "\";\n")
 		else:
