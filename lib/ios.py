@@ -29,17 +29,18 @@ def writeText(row, storyboard):
 
 	if storyboard != None and storyboard.lower() in resourceContent:
 		(path, content) = resourceContent[storyboard.lower()]
+		text = row.text.replace('"', '\\"').replace('<br/>', '\\n')
 		if storyboard.lower() == commonStoryboard.lower():
-			resourceContent[storyboard.lower()] = (path, content + "\""+row.key + "\" = \"" + row.text + "\"\n")
+			resourceContent[storyboard.lower()] = (path, content + "\""+row.key + "\" = \"" + text + "\";\n")
 		else:
-			resourceContent[storyboard.lower()] = (path, content.replace("#{"+row.key+"}", row.text))
+			resourceContent[storyboard.lower()] = (path, content.replace("#{"+row.key+"}", text))
 
 
 def writeComment(row, storyboard):
 	if commonStoryboard != None and commonStoryboard.lower() in resourceContent:
 		(path, content) = resourceContent[commonStoryboard.lower()]
 		resourceContent[commonStoryboard.lower()] = (path, content + "\n// "+row.section + "\n")
-	
+
 
 def writeStoryboard(row, storyboard):
 	if storyboardFiles != None:

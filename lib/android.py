@@ -25,7 +25,8 @@ def writeText(row, storyboard):
 	if storyboard != None:
 		file = resourceFiles[storyboard.lower()]
 		if file != None:
-			file.write("\t<string name=\""+row.key.strip()+"\">"+row.text.encode('utf-8').replace("<br/>","\n")+"</string>\n")
+			content = row.text.encode('utf-8').replace("<br/>","\\n").replace("'", "\\'")
+			file.write("\t<string name=\""+row.key.strip()+"\">"+content+"</string>\n")
 
 def writeStoryboard(row, storyboard):
 	if root != None:
