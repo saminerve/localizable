@@ -29,12 +29,17 @@ def writeText(row, storyboard):
 
 	if storyboard != None and storyboard.lower() in resourceContent:
 		(path, content) = resourceContent[storyboard.lower()]
-		text = row.text.replace('"', '\\"').replace('<br/>', '\\n')
+		text = replaceSpecialChars(row.text)
 		if storyboard.lower() == commonStoryboard.lower():
 			resourceContent[storyboard.lower()] = (path, content + "\""+row.key + "\" = \"" + text + "\";\n")
 		else:
 			resourceContent[storyboard.lower()] = (path, content.replace("#{"+row.key+"}", text))
 
+def replaceSpecialChars(text):
+    text = text.replace('"', '\\"')
+    text = text.replace('<br/>', '\\n')
+    text = text.replace('\\u', '\\U')
+    return text
 
 def writeComment(row, storyboard):
 	if commonStoryboard != None and commonStoryboard.lower() in resourceContent:
