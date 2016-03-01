@@ -8,7 +8,7 @@ create yaml file
 ex : 
 ```
 datasource : "data/izy.xlsx"
-ios : {"root" : "../izy-ios","path" : "izy/UserInterface"}
+ios : {"root" : "../izy-ios","path" : "izy/Application"}
 android : {"root" : "../izy-android"}
 ```
 
