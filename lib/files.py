@@ -1,6 +1,6 @@
 from tempfile import mkstemp
 from shutil import move
-import glob, os
+import glob, os , os.path
 
 def find(name, directory):
     for root, dirs, files in os.walk(directory):
@@ -8,12 +8,17 @@ def find(name, directory):
             if file.endswith(name):
                 return (root, file)
 
-def findFiles(name, directory):
+def findFiles(name, directory, parent):
+  
     foundFiles = []
     for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file.endswith(name):
-                foundFiles.append((root, file))  
+        for adir in dirs:
+            if adir.endswith(parent):
+               path = root +("/"+adir)
+               for r, d, f in os.walk(path):
+                    for afile in f:
+                     if afile.endswith(name):
+                        foundFiles.append((r, afile))  
     return foundFiles              
 
 def replace(file_path, pattern, subst):
