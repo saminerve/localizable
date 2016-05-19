@@ -40,6 +40,7 @@ def replaceSpecialChars(text):
     text = text.replace('"', '\\"')
     text = text.replace('<br/>', '\\n')
     text = text.replace('\\u', '\\U')
+	text = text.replace('&amp;', '&')
     return text
 
 def writeComment(row, storyboard):
