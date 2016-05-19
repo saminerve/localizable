@@ -10,7 +10,7 @@ def init(args):
 	global storyboardFiles, stringsFiles
 	storyboardFiles = findFiles(".storyboard", path, "Base.lproj")
 	stringsFiles = findFiles(".strings", path ,"fr.lproj")
-	#print "Founded Paths : %s." % storyboardFiles
+    
 	global resourceContent
 	resourceContent = {}
 
@@ -40,6 +40,7 @@ def replaceSpecialChars(text):
     text = text.replace('"', '\\"')
     text = text.replace('<br/>', '\\n')
     text = text.replace('\\u', '\\U')
+    text = text.replace('&amp;', '&')
     return text
 
 def writeComment(row, storyboard):
@@ -49,16 +50,12 @@ def writeComment(row, storyboard):
 
 
 def writeStoryboard(row, storyboard):
-
-	print "story", storyboard
-	if storyboardFiles != None:
+    print storyboard.lower() + ".strings"
+    if storyboardFiles != None:
 		for (rootStory, fileStory) in storyboardFiles:
 			if fileStory.lower() == storyboard.lower()+".storyboard" or storyboard.lower() == commonStoryboard.lower():
 				storyPath = rootStory+"/"+fileStory
 				for (rootStrings, fileStrings) in stringsFiles:
-					print storyboard.lower()+".strings"
-					print fileStrings.lower()
-					print "-------------------"
 					if fileStrings.lower() == storyboard.lower()+".strings":
 						stringsPath = rootStrings+"/"+fileStrings
 						generateStringsFile(storyboard.lower(), storyPath, stringsPath)
@@ -72,8 +69,6 @@ def writeStoryboard(row, storyboard):
 def generateStringsFile(storyboard, storyPath, stringsPath):
 	
 	if storyboard != None and storyboard.lower() == commonStoryboard.lower():
-		print storyboard.lower() + " / "+commonStoryboard.lower() , "deleted and Generated"
-		#print stringsPath
 		os.remove(stringsPath)
 		file = open(stringsPath, 'w')
 		file.close()
