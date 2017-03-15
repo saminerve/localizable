@@ -1,0 +1,2 @@
+datasource : "data/izy.xlsx"
+android : {"root" : "../Carrefour-IZY-Android/app/src/main/res"}
