@@ -18,6 +18,6 @@ android : root of project
 
 ## Run
 ```
-sudo pip install -r requirement.txt
+sudo pip install -r requirements.txt
 python localize.py <file.yaml>
 ```
